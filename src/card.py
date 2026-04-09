@@ -1,7 +1,7 @@
 from typing import List, Any 
 from dataclasses import dataclass
 import logging 
-from card_enum import CardRank, CardSuit 
+from src.card_enum import CardRank, CardSuit 
 
 @dataclass(frozen=True)
 class Card:
@@ -35,7 +35,13 @@ class Card:
         return self.rank < other.rank
 
     def __repr__(self) -> str:
-        return f"{self.rank.name.capitalize()} of {self.suit.value}"
+        """Debug Version of the string representation of a card."""
+        if self.rank < 11:
+            rank_str = str(self.rank.value)
+        else:
+            rank_str = self.rank.name[0] 
+            
+        return f"{rank_str}{self.suit.value}"
 
     def __str__(self) -> str:
         return f"{self.rank.name.capitalize()} of {self.suit.value}"
