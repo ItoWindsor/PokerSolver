@@ -1,7 +1,9 @@
-from typing import List, Any 
+from typing import Any
 from dataclasses import dataclass
-import logging 
-from src.card_enum import CardRank, CardSuit 
+import logging
+
+from backend.core.card_enum import CardRank, CardSuit
+
 
 @dataclass(frozen=True)
 class Card:
@@ -13,13 +15,12 @@ class Card:
     :params suit: The suit of the card 
         e.g : CardSuit.HEARTS
     """
-    rank : CardRank
-    suit : CardSuit
-
+    rank: CardRank
+    suit: CardSuit
 
     def __lt__(
-        self,
-        other : Any
+            self,
+            other: Any
     ) -> bool:
         """
         Overloading of the comparison operator. 
@@ -27,8 +28,8 @@ class Card:
 
         :params other: object to compare the card to.
         """
-        if not isinstance(other,Card):
-            error_msg : str = f"Can't compare type Card and type {type(other)}"
+        if not isinstance(other, Card):
+            error_msg: str = f"Can't compare type Card and type {type(other)}"
             logging.error(error_msg)
             raise TypeError(error_msg)
 
@@ -39,11 +40,9 @@ class Card:
         if self.rank < 11:
             rank_str = str(self.rank.value)
         else:
-            rank_str = self.rank.name[0] 
-            
+            rank_str = self.rank.name[0]
+
         return f"{rank_str}{self.suit.value}"
 
     def __str__(self) -> str:
         return f"{self.rank.name.capitalize()} of {self.suit.value}"
-
-

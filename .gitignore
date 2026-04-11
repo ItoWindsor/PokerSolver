@@ -2,7 +2,10 @@
 __pycache__/
 *.pyc
 .venv/
-.env 
+.env
+
+# Pycharm specific
+.idea/
 
 
 # OS generated files
